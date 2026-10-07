@@ -1,0 +1,39 @@
+:root{--bg:#f7f6f3;--ink:#1c1c1f;--muted:#6b6b72;--accent:#8a8d93;--accent-2:#d9dadd;--glow:transparent;
+  --serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",system-ui,sans-serif}
+.theme-platinum{--bg:#f3f4f6;--accent:#7d8590;--accent-2:#dfe2e7;--glow:rgba(160,170,185,.45)}
+.theme-gold{--bg:#faf5ea;--accent:#a67c1f;--accent-2:#ecdcb3;--glow:rgba(201,160,50,.4)}
+.theme-bronze{--bg:#f8f1ea;--accent:#8f5a35;--accent-2:#e6cfba;--glow:rgba(176,112,64,.35)}
+*{box-sizing:border-box}
+html,body{min-height:100%;margin:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);transition:background .6s;min-height:100vh;
+  display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
+#app{width:100%;max-width:460px}
+.screen{text-align:center}
+[hidden]{display:none!important}
+.brand{font:600 1.5rem var(--serif);letter-spacing:.18em;text-transform:uppercase;margin:0 0 20px}
+.muted{color:var(--muted);font-size:.95rem}
+.bar{width:140px;height:2px;background:var(--accent-2);margin:0 auto 16px;overflow:hidden}
+.bar span{display:block;height:100%;width:40%;background:var(--accent);animation:slide 1s ease-in-out infinite}
+@keyframes slide{from{transform:translateX(-100%)}to{transform:translateX(350%)}}
+.card{background:#fff;border:1px solid var(--accent-2);border-radius:18px;padding:32px 24px 36px;
+  box-shadow:0 20px 60px -20px var(--glow);position:relative;overflow:hidden;animation:fade .5s both}
+.card::before{content:"";position:absolute;inset:-40% -20% auto;height:70%;background:radial-gradient(closest-side,var(--glow),transparent);opacity:.5;pointer-events:none}
+.card>*{position:relative}
+.badge{width:150px;height:150px;display:block;margin:0 auto 12px}
+.kicker{font-size:.85rem;letter-spacing:.3em;color:var(--accent);margin:0 0 10px;font-weight:500}
+h1{font:600 clamp(1.6rem,7vw,2.1rem)/1.15 var(--serif);margin:0 0 18px}
+.name{font:500 clamp(1.7rem,8vw,2.4rem)/1.1 var(--serif);color:var(--accent);margin:0 0 14px;overflow-wrap:anywhere}
+.message{color:var(--muted);line-height:1.55;margin:0 auto 26px;max-width:32ch}
+.cta{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:500;
+  letter-spacing:.12em;font-size:.9rem;padding:16px 28px;border-radius:999px;min-height:48px;transition:transform .2s,box-shadow .2s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(0,0,0,.4)}
+.cta:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+/* Staggered reveal: badge, congratulations, title, name, message, button */
+.reveal{opacity:0;animation:rise .55s cubic-bezier(.2,.7,.2,1) forwards}
+.badge.reveal{animation-name:pop}
+#badge{animation-delay:.2s}.kicker{animation-delay:.45s}#title{animation-delay:.55s}
+.name{animation-delay:.7s}.message{animation-delay:.85s}.cta{animation-delay:1s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important}}
